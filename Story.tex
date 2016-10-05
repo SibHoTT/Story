@@ -1,0 +1,253 @@
+\documentclass[a4paper,14pt,russian%,hyperref={unicode}
+]{extreport}
+
+\usepackage{extsizes}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[%english,
+russian]{babel}
+
+\usepackage{indentfirst}
+\frenchspacing
+
+\usepackage{cite,float}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\usepackage{amssymb,amsfonts,amsmath,amsthm}
+\usepackage{amsfonts}
+%\usepackage{mathtext,mathrsfs}
+\usepackage{latexsym,%amscd,
+url,enumerate}
+\usepackage{mathpartir,mathtools}
+\usepackage[all]{xy}
+\usepackage{braket}
+
+\usepackage[
+pageanchor=true,
+plainpages=false,
+pdfpagelabels,
+bookmarks,
+bookmarksnumbered,
+pdfborder={0 0 0},
+pdfpagemode=UseOutlines]{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\let\geq\geqslant
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Y}{\mathcal{Y}}
+%\newcommand{\C}{\mathcal{C}}
+\newcommand{\Q}{\mathcal{Q}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\baseT}{\mathtt{b}}
+\newcommand{\pT}{\mathtt{p}}
+\newcommand{\qT}{\mathtt{q}}
+\newcommand{\tT}{\mathtt{t}}
+\newcommand{\type}{\mathtt{type}}
+\newcommand{\id}[3][]{#2 =_{#1} #3}
+\newcommand{\idtype}[3][]{\id[#1]{#2}{#3}}
+\newcommand{\refl}[1]{\ensuremath{\mathsf{1}_{#1}}}
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\sm}[1]{\Sigma_{#1}}
+\newcommand{\prd}[1]{\Pi_{#1}}
+\newcommand{\lam}[1]{\lambda_{#1}}
+\newcommand{\comphom}{\circ_{\mathcal{H}}}
+%\newcommand{\U}{\mathcal{U}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\iscontr}[1]{\mathsf{is}\mbox{-}\mathsf{contr}(#1)}
+\newcommand{\isprop}[1]{\mathsf{is}\mbox{-}\mathsf{prop}(#1)}
+\newcommand{\iseq}[1]{\mathsf{iseq}(#1)}
+\newcommand{\nat}{\mathbb{N}}
+\newcommand{\nathom}{\mathsf{nat}}
+\newcommand{\zero}{\mathbf{0}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\two}{\mathbf{2}}
+\newcommand{\ap}[2]{\mathsf{ap}_{#1}(#2)}
+\newcommand{\J}[2]{\mathsf{J}(#1,#2)}
+\newcommand{\opp}[1]{\mathord{{#1}^{-1}}}
+\newcommand{\trans}[2]{{#2}_*^{#1}}
+\newcommand{\transc}[2]{{#2}^*_{#1}}
+\newcommand{\idfun}[1]{\mathsf{id}_{#1}}
+\newcommand{\comp}{\circ}
+\newcommand{\apsym}{\mathsf{ap}}
+\newcommand{\dap}[2]{\mathsf{dap}_{#1}(#2)}
+\newcommand{\dapc}[2]{\mathsf{dap}^{#1}(#2)}
+\newcommand{\pair}{\ensuremath{\mathsf{proj}^{\mathord{=}}}}
+\newcommand{\pairpath}{\ensuremath{\mathsf{pair}^{\mathord{=}}}}
+\newcommand{\funext}{\mathsf{funext}}
+\newcommand{\happly}{\mathsf{hap}}
+\newcommand{\ideq}{\leftidx{^=}{\mathsf{E}}{^\simeq}}
+\newcommand{\uni}{\leftidx{^\simeq}{\mathsf{E}}{^=}}
+\newcommand{\fst}{\pi_1}
+\newcommand{\snd}{\pi_2}
+\newcommand{\z}{\mathsf{z}}
+\newcommand{\s}{\mathsf{s}}
+\newcommand{\point}{\mathsf{sup}}
+\newcommand{\cell}{\mathsf{cell}}
+\newcommand{\Sn}{\mathbf{S}}
+\newcommand{\base}{\mathsf{base}}
+\newcommand{\lloop}{\mathsf{loop}}
+\newcommand{\circrec}[3]{\mathsf{rec}_{\Sn}(#1,#2,#3)}
+\newcommand{\recsym}{\mathsf{rec}}
+\newcommand{\indsym}{\mathsf{ind}}
+\newcommand{\idhom}{\mathsf{id}_\mathcal{H}}
+\newcommand{\invsqfstinv}{\mathbf{I}^{-1}_\square}
+\newcommand{\invsqsndinv}{\mathbf{I}^{-2}_\square}
+\newcommand{\invsqfst}{\mathbf{I}^1_\square}
+\newcommand{\invsqsnd}{\mathbf{I}^2_\square}
+\newcommand{\transfib}[3]{\ensuremath{\mathsf{trans}^{#1}(#2,#3)}}
+\newcommand{\ct}{%
+  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}%
+             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}%
+             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}%
+             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+\newcommand{\mapdepfunc}[1]{\ensuremath{\mathsf{apd}_{#1}}}
+\newcommand{\mapdep}[2]{\ensuremath{\mapdepfunc{#1}\mathopen{}\left(#2\right)\mathclose{}}}
+\newcommand{\hapfuneq}{\mathsf{funext}\mbox{-}\mathsf{happly}\mbox{-}\mathsf{inv}}
+
+%HoTT
+\renewcommand{\defeq}{\vcentcolon\equiv}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}\xspace}
+\let\type\UU
+\newcommand{\emptyt}{\mathbf{0}\xspace}
+\newcommand{\unit}{\mathbf{1}\xspace}
+\let\setof\Set
+\newcommand{\pairr}[1]{{\mathopen{}(#1)\mathclose{}}}
+\newcommand{\Pairr}[1]{{\mathopen{}\left(#1\right)\mathclose{}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}\xspace}
+%\usepackage{mathbbol}
+%\DeclareSymbolFontAlphabet{\amsmathbb}{AMSb}%
+%\renewcommand{\refl}[1]{\ensuremath{\mathbb{1}_{#1}}}
+\renewcommand{\iscontr}{\ensuremath{\mathsf{isContr}}}
+\newcommand{\istype}[1]{\mathsf{is}\mbox{-}{#1}\mbox{-}\mathsf{type}}
+\newcommand{\Trunc}[2]{\Bigl\Vert #2\Bigr\Vert_{#1}}
+\newcommand{\eqv}[2]{\ensuremath{#1 \simeq #2}\xspace}
+
+\let\define\emph
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\renewcommand{\thesection}{\arabic{section}}
+
+\section{О сертификации конструкций\footnote{В принимаемом нами по умолчанию брауэровском интуиционистском (==конструктивистском) смысле.}}
+
+\define{Сертифицированная}~программа~\cite[стр.~7]{chlipala} --- программа, снабженная конструктивным свидетельством своего соответствия требованиям, предъявляемым к ней спецификацией.
+
+\subsection*{Конструктивность != алгоритмичность}
+
+Важно понимать, что термины <<конструктивность>> и \define{<<алгоритмичность>>} отнюдь не являются синонимами. \define{Конструктивность} объекта или процедуры несёт куда более широкий смысл, поскольку
+не утверждает ограниченности его свойств только формализуемыми в классической теории алгоритмов в духе Чёрча, Тьюринга, Поста и др. Так, природа объекта не обязана соответствовать подразумеваемым
+различными моделями ТА ограничениям типа фиксации исполнителя, дискретности, последовательности, детерминизма, отсутствия влияния <<внешних>> по отношению к системе <<исполнитель-программа>> факторов (взаимодействий, событий, исключений) и многого другого.
+
+\chapter*{Наши цели}
+\section*{Осенний семестр 2016}
+\begin{enumerate}
+
+\item Разобрать основы генерации доказательств и сертифицированного программного кода в среде Coq \cite{chlipala, coq, pierce_coq}%, \cite{coq}, 
+
+\item Знакомиться с конструктивизмом [Трулстра et al] 
+
+\item Углубить свои представления о решёточном подходе, пользуясь [Расёва-Сикорский (Гейтинг??)]
+
+\end{enumerate}
+
+
+\section*{2016--2017 учебный год}
+\begin{itemize}
+
+\item Выяснить %установить
+перспективную % возможную
+применимость в интересующем нас контексте топосов Голдблатта [+ТТТ];
+
+\item Выявить потенциальные взаимосвязи рассматриваемых предметов %тем
+ с категорной стохастикой.
+
+
+\item Определить предпочтения относительно набора технологий \define{конструктивного} (в~т.~ч., машинного) представления математики.
+
+
+\item Получить выход на сжатие (устранение избыточности) данных --- в особенности, естественно организованных во времени, таких, как сигналы, ряды, потоки\ldots\medskip--- в виду избранной парадигмы.
+
+\end{itemize}
+
+\section*{Магистратура}
+\begin{itemize}
+
+\item Проверить действенность уни-(поли-?)валентной или иных реализаций теоретико-типового видения оснований математики при решении достаточно частных и значимых конкретных вопросов;
+
+\item Детально разработать такой вопрос в русле рассматриваемых тем;
+
+\item Представить результаты в магистерской диссертации;
+
+\item Определить дальнейшую траекторию
+
+\end{itemize}
+
+%
+%   ? Можно ли сделать несколько различных списков литературы или рубрикацию в пределах одного ? 
+%
+
+\begin{thebibliography}{10}
+\def\selectlanguageifdefined#1{
+\expandafter\ifx\csname date#1\endcsname\relax
+\else\selectlanguage{#1}\fi}
+\providecommand*{\href}[2]{{\small #2}}
+\providecommand*{\url}[1]{{\small #1}}
+\providecommand*{\BibUrl}[1]{\url{#1}}
+\providecommand{\BibAnnote}[1]{}
+\providecommand*{\BibEmph}[1]{#1}
+\ProvideTextCommandDefault{\cyrdash}{\iflanguage{russian}{\hbox
+  to.8em{--\hss--}}{\textemdash}}
+\providecommand*{\BibDash}{\ifdim\lastskip>0pt\unskip\nobreak\hskip.2em plus
+  0.1em\fi
+\cyrdash\hskip.2em plus 0.1em\ignorespaces}
+\renewcommand{\newblock}{\ignorespaces}
+\makeatletter 
+\renewcommand{\@biblabel}[1]{#1.} 
+\makeatother
+
+\bibitem{chlipala}
+\selectlanguageifdefined{russian}
+Chlipala A. Certified programming with dependent types : a pragmatic introduction to the Coq proof assistant / A. Chlipala, 2013. 424 c.
+
+\bibitem{hott}
+\selectlanguageifdefined{russian}
+\BibEmph{{The Univalent Foundations Program}}. Homotopy Type Theory: Univalent
+  Foundations of Mathematics. \BibDash
+\newblock Institute for Advanced Study~:
+  \url{https://homotopytypetheory.org/book}, 2013.
+
+\bibitem{coq}
+\selectlanguageifdefined{russian}
+\BibEmph{{Coq Development Team}}. {The Coq Proof Assistant Reference Manual [Электронный ресурс]~: руководство пользователя}
+  \BibDash
+\newblock 2012. \BibDash
+\newblock Режим доступа: \BibUrl{https://coq.inria.fr/distrib/current/refman/index.html}.
+
+\bibitem{pierce_coq}
+\selectlanguageifdefined{russian}
+Pierce B.C. [и др.]. Software Foundations // Version 4.0 (May, 2016) [Электронный ресурс]. URL: http://www.cis.upenn.edu/~bcpierce/sf/current/index.html.
+
+%Mercurial Клипалы
+
+\bibitem{tt_geuv}
+Geuvers, H. Introduction to Type Theory / Herman Geuvers // Technical
+University Eindhoven, The Netherlands \BibDash 2008. \BibDash http://www.cs.ru.nl/
+~herman/PUBS/IntroTT.pdf.
+
+\bibitem{harper}
+\selectlanguageifdefined{russian}
+\BibEmph{Harper,~R.} {Extensionality, intensionality, and Brouwer’s dictum [Электронный ресурс]~: электронная статья} \BibDash
+\newblock 2012. \BibDash
+\newblock Режим доступа:
+  \BibUrl{http://existentialtype.wordpress.com/2012/08/11/
+extensionality-intensionality-and-brouwers-dictum/}.
+
+\end{thebibliography}
+
+\end{document}
