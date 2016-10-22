@@ -1,8 +1,76 @@
+\documentclass[a4paper,14pt,russian%,hyperref={unicode}
+]{extreport}
+
+\usepackage{extsizes}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[%english,
+russian]{babel}
+
+\usepackage{indentfirst}
+\frenchspacing
+
+\let\define\emph
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
 
 ¬озможные темы:
 
 \begin{enumerate}
-\item –азобрать основы генерации доказательств и сертифицированного программного кода в среде Coq \cite{chlipala, coq} (дополнительно \cite{pierce_coq, coq_art})%, \cite{coq},
+\item \textbf{–азобрать основы генерации доказательств и сертифицированного программного кода в среде Coq \cite{chlipala, coq} (дополнительно \cite{pierce_coq, coq_art})}
 \item “еори€ топосов (+ возможно, в стиле \emph{Barr M., Wells C. TOPOSES, TRIPLES AND THEORIES 2005})/
 \end{enumerate}
+
+\begin{thebibliography}{10}
+\def\selectlanguageifdefined#1{
+\expandafter\ifx\csname date#1\endcsname\relax
+\else\selectlanguage{#1}\fi}
+\providecommand*{\href}[2]{{\small #2}}
+\providecommand*{\url}[1]{{\small #1}}
+\providecommand*{\BibUrl}[1]{\url{#1}}
+\providecommand{\BibAnnote}[1]{}
+\providecommand*{\BibEmph}[1]{#1}
+\ProvideTextCommandDefault{\cyrdash}{\iflanguage{russian}{\hbox
+  to.8em{--\hss--}}{\textemdash}}
+\providecommand*{\BibDash}{\ifdim\lastskip>0pt\unskip\nobreak\hskip.2em plus
+  0.1em\fi
+\cyrdash\hskip.2em plus 0.1em\ignorespaces}
+\renewcommand{\newblock}{\ignorespaces}
+\makeatletter 
+\renewcommand{\@biblabel}[1]{#1.} 
+\makeatother
+
+\bibitem{chlipala}
+\selectlanguageifdefined{russian}
+Chlipala A. Certified programming with dependent types : a pragmatic introduction to the Coq proof assistant / A. Chlipala, 2013. 424 c.
+
+\bibitem{coq}
+\selectlanguageifdefined{russian}
+\BibEmph{{Coq Development Team}}. {The Coq Proof Assistant Reference Manual [Ёлектронный ресурс]~: руководство пользовател€}
+  \BibDash
+\newblock 2012. \BibDash
+\newblock –ежим доступа: \BibUrl{https://coq.inria.fr/distrib/current/refman/index.html}.
+
+\bibitem{pierce_coq}
+\selectlanguageifdefined{russian}
+Pierce B.C. [и др.]. Software Foundations // Version 4.0 (May, 2016) [Ёлектронный ресурс]. URL: http://www.cis.upenn.edu/~bcpierce/sf/current/index.html.
+
+\bibitem{coq_art}
+\selectlanguageifdefined{russian}
+Bertot Y., Cast?ran P. Interactive Theorem Proving and Program Development / Y. Bertot, P. Cast?ran, Berlin, Heidelberg: Springer Berlin Heidelberg, 2004.
+ URL: http://www.cis.upenn.edu/~bcpierce/sf/current/index.html.
+
+\bibitem{goldblatt}
+\selectlanguageifdefined{russian}
+Goldblatt R. Topoi : the categorial analysis of logic / R. Goldblatt, Dover Publications, 2006. 551 c.
+
+\bibitem{ttt}
+\selectlanguageifdefined{russian}
+Barr M., Wells C. TOPOSES, TRIPLES AND THEORIES 2005. URL: http://www.tac.mta.ca/tac/reprints/articles/12/tr12.pdf
+
+\end{thebibliography}
+
+\end{document}
 
