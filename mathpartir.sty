@@ -1,9 +1,9 @@
 %  Mathpartir --- Math Paragraph for Typesetting Inference Rules
 %
-%  Copyright (C) 2001, 2002, 2003, 2004, 2005 Didier RÃ©my
+%  Copyright (C) 2001, 2002, 2003, 2004, 2005, 2015 Didier Rémy
 %
 %  Author         : Didier Remy 
-%  Version        : 1.2.0
+%  Version        : 1.3.1
 %  Bug Reports    : to author
 %  Web Site       : http://pauillac.inria.fr/~remy/latex/
 % 
@@ -24,7 +24,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{mathpartir}
-    [2005/12/20 version 1.2.0 Math Paragraph for Typesetting Inference Rules]
+    [2015/11/06 version 1.3.1 Math Paragraph for Typesetting Inference Rules]
 
 %%
 
@@ -67,6 +67,7 @@
 \def \mpr@and {\hskip \mpr@andskip}
 \def \mpr@andcr {\penalty 50\mpr@and}
 \def \mpr@cr {\penalty -10000\mpr@and}
+%\def \mpr@cr {\penalty -10000\vadjust{\vbox{}}\mpr@and}
 \def \mpr@eqno #1{\mpr@andcr #1\hskip 0em plus -1fil \penalty 10}
 
 \def \mpr@bindings {%
@@ -158,14 +159,25 @@
 \newbox \mpr@hlist
 \newbox \mpr@vlist
 \newif \ifmpr@center \mpr@centertrue
+\def \mpr@vskip {}
 \def \mpr@htovlist {%
    \setbox \mpr@hlist
       \hbox {\strut
              \ifmpr@center \hskip -0.5\wd\mpr@hlist\fi
              \unhbox \mpr@hlist}%
    \setbox \mpr@vlist
-      \vbox {\if@premisse  \box \mpr@hlist \unvbox \mpr@vlist
-             \else \unvbox \mpr@vlist \box \mpr@hlist
+      \vbox {\if@premisse
+                \box \mpr@hlist
+                \ifx \mpr@vskip \empty \else
+                  \hrule height 0em depth \mpr@vskip width 0em
+                \fi
+                \unvbox \mpr@vlist
+             \else
+                \unvbox \mpr@vlist 
+                \ifx \mpr@vskip \empty \else
+                  \hrule height 0em depth \mpr@vskip width 0em
+                \fi
+                \box \mpr@hlist
              \fi}%
 }
 % OLD version
@@ -173,7 +185,7 @@
 %    \setbox \mpr@hlist
 %       \hbox {\strut \hskip -0.5\wd\mpr@hlist \unhbox \mpr@hlist}%
 %    \setbox \mpr@vlist
-%       \vbox {\if@premisse  \box \mpr@hlist \unvbox \mpr@vlist
+%       \vbox {\if@premisse \box \mpr@hlist \unvbox \mpr@vlist
 %              \else \unvbox \mpr@vlist \box \mpr@hlist
 %              \fi}%
 % }
@@ -255,19 +267,26 @@
 
 %% A generic solution to arrow
 
+\def \mpr@@fractionaboveskip {0ex}
+\def \mpr@@fractionbelowskip {0.22ex}
+
 \def \mpr@make@fraction #1#2#3#4#5{\hbox {%
      \def \mpr@tail{#1}%
      \def \mpr@body{#2}%
      \def \mpr@head{#3}%
      \setbox1=\hbox{$#4$}\setbox2=\hbox{$#5$}%
      \setbox3=\hbox{$\mkern -3mu\mpr@body\mkern -3mu$}%
-     \setbox3=\hbox{$\mkern -3mu \mpr@body\mkern -3mu$}%
-     \dimen0=\dp1\advance\dimen0 by \ht3\relax\dp1\dimen0\relax
-     \dimen0=\ht2\advance\dimen0 by \dp3\relax\ht2\dimen0\relax
-     \setbox0=\hbox {$\box1 \@@atop \box2$}%
+     \dimen0\ht3\advance\dimen0 by \dp3\relax
+     \dimen0 0.5\dimen0\relax
+     \advance \dimen0 by \mpr@@fractionaboveskip
+     \setbox1=\hbox {\raise \dimen0 \box1}\relax
+     \dimen0 -\dimen0\advance \dimen0 \mpr@@fractionaboveskip\dimen0 -\dimen0
+     \advance \dimen0 by \mpr@@fractionbelowskip
+     \setbox2=\hbox {\lower \dimen0 \box2}\relax
+     \setbox0=\hbox {$\displaystyle {\box1 \atop \box2}$}%
      \dimen0=\wd0\box0
      \box0 \hskip -\dimen0\relax
-     \hbox to \dimen0 {$%
+     \hbox to \dimen0 {$%\color{blue}
        \mathrel{\mpr@tail}\joinrel
        \xleaders\hbox{\copy3}\hfil\joinrel\mathrel{\mpr@head}%
      $}}}
@@ -306,7 +325,7 @@
    \else \vbox 
 %%% Suggestion de Francois pour les etiquettes longues
 %%%   {\hbox to \wd0 {\RefTirName {#1}\hfil}\box0}\fi
-      {\hbox {\RefTirName {#1}}\box0}\fi
+      {\hbox {\DefTirName {#1}}\box0}\fi
    \egroup}
 
 \def \mpr@vdotfil #1{\vbox to #1{\leaders \hbox{$\cdot$} \vfil}}
@@ -345,12 +364,12 @@
 %  after                execute val at the end/right
 %  
 %  Note that most options must come in this order to avoid strange
-%  typesetting (in particular  leftskip must precede left and Left and
+%  typesetting (in particular  leftskip must preceed left and Left and
 %  rightskip must follow Right or right; vdots must come last 
 %  or be only followed by rightskip. 
 %  
 
-%% Keys that make sense in all kinds of rules
+%% Keys that make sence in all kinds of rules
 \def \mprset #1{\setkeys{mprset}{#1}}
 \define@key {mprset}{andskip}[]{\mpr@andskip=#1}
 \define@key {mprset}{lineskip}[]{\lineskip=#1}
@@ -361,7 +380,15 @@
 \define@key {mprset}{atop}[]{\let \mpr@fraction \mpr@@nofraction}
 \define@key {mprset}{myfraction}[]{\let \mpr@fraction #1}
 \define@key {mprset}{fraction}[]{\def \mpr@fraction {\mpr@make@fraction #1}}
+% To be documented.
+\define@key {mprset}{defaultfraction}[]{\let \mpr@fraction \mpr@@fraction}
 \define@key {mprset}{sep}{\def\mpr@sep{#1}}
+\define@key {mprset}{fractionaboveskip}{\def\mpr@@fractionaboveskip{#1}}
+\define@key {mprset}{fractionbelowskip}{\def\mpr@@fractionbelowskip{#1}}
+\define@key {mprset}{style}[1]{\def\TirNameStyle{#1}def}
+\define@key {mprset}{rightstyle}[1]{\def\RightTirNameStyle{#1}}
+\define@key {mprset}{leftstyle}[1]{\def\LeftTirNameStyle{#1}}
+\define@key {mprset}{vskip}[1]{\def \mpr@vskip{#1}}
 
 \newbox \mpr@right
 \define@key {mpr}{flushleft}[]{\mpr@centerfalse}
@@ -369,13 +396,15 @@
 \define@key {mpr}{rewrite}[]{\let \mpr@fraction \mpr@@rewrite}
 \define@key {mpr}{myfraction}[]{\let \mpr@fraction #1}
 \define@key {mpr}{fraction}[]{\def \mpr@fraction {\mpr@make@fraction #1}}
-\define@key {mpr}{left}{\setbox0 \hbox {$\TirName {#1}\;$}\relax
-     \advance \hsize by -\wd0\box0}
 \define@key {mpr}{width}{\hsize #1}
 \define@key {mpr}{sep}{\def\mpr@sep{#1}}
 \define@key {mpr}{before}{#1}
-\define@key {mpr}{lab}{\let \RefTirName \TirName \def \mpr@rulename {#1}}
-\define@key {mpr}{Lab}{\let \RefTirName \TirName \def \mpr@rulename {#1}}
+\define@key {mpr}{lab}{\let \DefTirName \LabTirName \def \mpr@rulename {#1}}
+\define@key {mpr}{Lab}{\let \DefTirName \LabTirName \def \mpr@rulename {#1}}
+\define@key {mpr}{style}[1]{\def\TirNameStyle{#1}def}
+\define@key {mpr}{rightstyle}[1]{\def\RightTirNameStyle{#1}}
+\define@key {mpr}{leftstyle}[1]{\def\LeftTirNameStyle{#1}}
+\define@key {mpr}{vskip}[1]{\def \mpr@vskip{#1}}
 \define@key {mpr}{narrower}{\hsize #1\hsize}
 \define@key {mpr}{leftskip}{\hskip -#1}
 \define@key {mpr}{reduce}[]{\let \mpr@fraction \mpr@@reduce}
@@ -383,30 +412,40 @@
   {\setbox \mpr@right \hbox {\unhbox \mpr@right \hskip -#1}}
 \define@key {mpr}{LEFT}{\setbox0 \hbox {$#1$}\relax
      \advance \hsize by -\wd0\box0}
-\define@key {mpr}{left}{\setbox0 \hbox {$\TirName {#1}\;$}\relax
+
+\define@key {mpr}{left}{\setbox0 \hbox {$\LeftTirName {#1}\;$}\relax
      \advance \hsize by -\wd0\box0}
-\define@key {mpr}{Left}{\llap{$\TirName {#1}\;$}}
+\define@key {mpr}{Left}{\llap{$\LeftTirName {#1}\;$}}
 \define@key {mpr}{right}
-  {\setbox0 \hbox {$\;\TirName {#1}$}\relax \advance \hsize by -\wd0
+  {\setbox0 \hbox {$\;\RightTirName {#1}$}\relax \advance \hsize by -\wd0
    \setbox \mpr@right \hbox {\unhbox \mpr@right \unhbox0}}
 \define@key {mpr}{RIGHT}
   {\setbox0 \hbox {$#1$}\relax \advance \hsize by -\wd0
    \setbox \mpr@right \hbox {\unhbox \mpr@right \unhbox0}}
 \define@key {mpr}{Right}
-  {\setbox \mpr@right \hbox {\unhbox \mpr@right \rlap {$\;\TirName {#1}$}}}
+  {\setbox \mpr@right \hbox {\unhbox \mpr@right \rlap {$\;\RightTirName {#1}$}}}
 \define@key {mpr}{vdots}{\def \mpr@vdots {\@@atop \mpr@vdotfil{#1}}}
 \define@key {mpr}{after}{\edef \mpr@after {\mpr@after #1}}
+\define@key {mpr}{vcenter}[]{\mpr@vcentertrue}
 
-\newcommand \mpr@inferstar@ [3][]{\setbox0
-  \hbox {\let \mpr@rulename \mpr@empty \let \mpr@vdots \relax
+\newif \ifmpr@vcenter \mpr@vcenterfalse
+\newcommand \mpr@inferstar@ [3][]{\begingroup
+  \setbox0 \hbox
+        {\let \mpr@rulename \mpr@empty \let \mpr@vdots \relax
          \setbox \mpr@right \hbox{}%
-         $\setkeys{mpr}{#1}%
-          \ifx \mpr@rulename \mpr@empty \mpr@inferrule {#2}{#3}\else
+         \setkeys{mpr}{#1}%
+         $\ifx \mpr@rulename \mpr@empty \mpr@inferrule {#2}{#3}\else
           \mpr@inferrule [{\mpr@rulename}]{#2}{#3}\fi
-          \box \mpr@right \mpr@vdots$}
-  \setbox1 \hbox {\strut}
-  \@tempdima \dp0 \advance \@tempdima by -\dp1
-  \raise \@tempdima \box0}
+          \box \mpr@right \mpr@vdots$
+          \ifmpr@vcenter \aftergroup \mpr@vcentertrue \fi}
+  \ifmpr@vcenter
+     \box0
+  \else 
+     \setbox1 \hbox {\strut}  
+     \@tempdima \dp0 \advance \@tempdima by -\dp1
+     \raise \@tempdima \box0
+  \fi
+  \endgroup}
 
 \def \mpr@infer {\@ifnextchar *{\mpr@inferstar}{\mpr@inferrule}}
 \newcommand \mpr@err@skipargs[3][]{}
@@ -429,10 +468,16 @@
 \@ifundefined {infer}{\let \infer \mpr@infer}{}
 
 \def \TirNameStyle #1{\small \textsc{#1}}
-\def \tir@name #1{\hbox {\small \TirNameStyle{#1}}}
-\let \TirName \tir@name
-\let \DefTirName \TirName
-\let \RefTirName \TirName
+\def \LeftTirNameStyle #1{\TirNameStyle {#1}}
+\def \RightTirNameStyle #1{\TirNameStyle {#1}}
+
+\def \lefttir@name #1{\hbox {\small \LeftTirNameStyle{#1}}}
+\def \righttir@name #1{\hbox {\small \RightTirNameStyle{#1}}}
+\let \TirName \lefttir@name
+\let \LeftTirName \lefttir@name
+\let \DefTirName \lefttir@name
+\let \LabTirName \lefttir@name
+\let \RightTirName \righttir@name
 
 %%% Other Exports
 
