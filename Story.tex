@@ -24,6 +24,8 @@ url,enumerate}
 \usepackage[all]{xy}
 \usepackage{braket}
 
+\includeonly{references/refs}
+
 \usepackage[
 pageanchor=true,
 plainpages=false,
@@ -144,125 +146,6 @@ pdfpagemode=UseOutlines]{hyperref}
 не утверждает ограниченности его свойств только формализуемыми в классической теории алгоритмов в духе Чёрча, Тьюринга, Поста и др. Так, природа объекта не обязана соответствовать подразумеваемым
 различными моделями ТА ограничениям типа фиксации исполнителя, дискретности, последовательности, детерминизма, отсутствия влияния <<внешних>> по отношению к системе <<исполнитель-программа>> факторов (взаимодействий, событий, исключений) и многого другого.
 
-\chapter*{Наши цели}
-\section*{Осенний семестр 2016}
-\begin{enumerate}
-
-\item Разобрать основы генерации доказательств и сертифицированного программного кода в среде Coq \cite{chlipala, coq} (дополнительно \cite{pierce_coq, coq_art})%, \cite{coq}, 
-
-\item Знакомиться с конструктивизмом [Трулстра et al] 
-
-\item Углубить свои представления о решёточном подходе, пользуясь [Расёва-Сикорский (Гейтинг??)]
-
-\end{enumerate}
-
-
-\section*{2016--2017 учебный год}
-\begin{itemize}
-
-\item Выяснить %установить
-перспективную % возможную
-применимость в интересующем нас контексте теории топосов \cite{goldblatt, ttt};
-
-\item Выявить потенциальные взаимосвязи рассматриваемых предметов %тем
- с категорной стохастикой.
-
-
-\item Определить предпочтения относительно набора технологий \define{конструктивного} (в~т.~ч., машинного) представления математики.
-
-
-\item Получить выход на сжатие (устранение избыточности) данных --- в особенности, естественно организованных во времени, таких, как сигналы, ряды, потоки\ldots\medskip--- в виду избранной парадигмы.
-
-\end{itemize}
-
-\section*{Магистратура}
-\begin{itemize}
-
-\item Проверить действенность уни-(поли-?)валентной или иных реализаций теоретико-типового видения оснований математики при решении достаточно частных и значимых конкретных вопросов;
-
-\item Детально разработать такой вопрос в русле рассматриваемых тем;
-
-\item Представить результаты в магистерской диссертации;
-
-\item Определить дальнейшую траекторию
-
-\end{itemize}
-
-%
-%   ? Можно ли сделать несколько различных списков литературы или рубрикацию в пределах одного ? 
-%
-
-\begin{thebibliography}{10}
-\def\selectlanguageifdefined#1{
-\expandafter\ifx\csname date#1\endcsname\relax
-\else\selectlanguage{#1}\fi}
-\providecommand*{\href}[2]{{\small #2}}
-\providecommand*{\url}[1]{{\small #1}}
-\providecommand*{\BibUrl}[1]{\url{#1}}
-\providecommand{\BibAnnote}[1]{}
-\providecommand*{\BibEmph}[1]{#1}
-\ProvideTextCommandDefault{\cyrdash}{\iflanguage{russian}{\hbox
-  to.8em{--\hss--}}{\textemdash}}
-\providecommand*{\BibDash}{\ifdim\lastskip>0pt\unskip\nobreak\hskip.2em plus
-  0.1em\fi
-\cyrdash\hskip.2em plus 0.1em\ignorespaces}
-\renewcommand{\newblock}{\ignorespaces}
-\makeatletter 
-\renewcommand{\@biblabel}[1]{#1.} 
-\makeatother
-
-\bibitem{chlipala}
-\selectlanguageifdefined{russian}
-Chlipala A. Certified programming with dependent types : a pragmatic introduction to the Coq proof assistant / A. Chlipala, 2013. 424 c.
-
-\bibitem{hott}
-\selectlanguageifdefined{russian}
-\BibEmph{{The Univalent Foundations Program}}. Homotopy Type Theory: Univalent
-  Foundations of Mathematics. \BibDash
-\newblock Institute for Advanced Study~:
-  \url{https://homotopytypetheory.org/book}, 2013.
-
-\bibitem{coq}
-\selectlanguageifdefined{russian}
-\BibEmph{{Coq Development Team}}. {The Coq Proof Assistant Reference Manual [Электронный ресурс]~: руководство пользователя}
-  \BibDash
-\newblock 2012. \BibDash
-\newblock Режим доступа: \BibUrl{https://coq.inria.fr/distrib/current/refman/index.html}.
-
-\bibitem{pierce_coq}
-\selectlanguageifdefined{russian}
-Pierce B.C. [и др.]. Software Foundations // Version 4.0 (May, 2016) [Электронный ресурс]. URL: http://www.cis.upenn.edu/~bcpierce/sf/current/index.html.
-
-\bibitem{coq_art}
-\selectlanguageifdefined{russian}
-Bertot Y., Cast?ran P. Interactive Theorem Proving and Program Development / Y. Bertot, P. Cast?ran, Berlin, Heidelberg: Springer Berlin Heidelberg, 2004.
- URL: http://www.cis.upenn.edu/~bcpierce/sf/current/index.html.
-
-%Mercurial Клипалы
-
-\bibitem{goldblatt}
-\selectlanguageifdefined{russian}
-Goldblatt R. Topoi : the categorial analysis of logic / R. Goldblatt, Dover Publications, 2006. 551 c.
-
-\bibitem{ttt}
-\selectlanguageifdefined{russian}
-Barr M., Wells C. TOPOSES, TRIPLES AND THEORIES 2005. URL: http://www.tac.mta.ca/tac/reprints/articles/12/tr12.pdf
-
-%Mercurial Клипалы
-
-\bibitem{tt_geuv}
-Geuvers, H. Introduction to Type Theory / Herman Geuvers // Technical
-University Eindhoven, The Netherlands \BibDash 2008. \BibDash http://www.cs.ru.nl/
-~herman/PUBS/IntroTT.pdf.
-
-\bibitem{harper}
-\selectlanguageifdefined{russian}
-\BibEmph{Harper,~R.} {Extensionality, intensionality, and Brouwer’s dictum [Электронный ресурс]~: электронная статья} \BibDash
-\newblock 2012. \BibDash
-\newblock Режим доступа:
-  \BibUrl{http://existentialtype.wordpress.com/2012/08/11/
-extensionality-intensionality-and-brouwers-dictum/}.
-
-\end{thebibliography}
+\include{references/refs}
 
 \end{document}

@@ -1,0 +1,32 @@
+\documentclass[a4paper,14pt,russian%,hyperref={unicode}
+]{extreport}
+
+\usepackage{extsizes}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[%english,
+russian]{babel}
+
+\usepackage{indentfirst}
+\frenchspacing
+
+%\newcommand*{\MyPath}{../}%
+\includeonly{references/refs}
+
+\let\define\emph
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+Возможные темы:
+
+\begin{enumerate}
+\item \textbf{Разобрать основы генерации доказательств и сертифицированного программного кода в среде Coq \cite{chlipala, coq} (дополнительно \cite{pierce_coq, coq_art})}
+\item Теория топосов (+ возможно, в стиле \emph{Barr M., Wells C. TOPOSES, TRIPLES AND THEORIES 2005})/
+\end{enumerate}
+
+\include{references/refs}
+
+\end{document}
+
