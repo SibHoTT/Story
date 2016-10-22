@@ -1,27 +1,6 @@
-\documentclass[a4paper,14pt,russian%,hyperref={unicode}
-]{extreport}
-
-\usepackage{extsizes}
-\usepackage[T2A]{fontenc}
-\usepackage[cp1251]{inputenc}
-\usepackage[%english,
-russian]{babel}
-
-\usepackage{indentfirst}
-\frenchspacing
-
-\let\define\emph
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{document}
-
-Возможные темы:
-
-\begin{enumerate}
-\item \textbf{Разобрать основы генерации доказательств и сертифицированного программного кода в среде Coq \cite{chlipala, coq} (дополнительно \cite{pierce_coq, coq_art})}
-\item Теория топосов (+ возможно, в стиле \emph{Barr M., Wells C. TOPOSES, TRIPLES AND THEORIES 2005})/
-\end{enumerate}
+%
+%   ? Можно ли сделать несколько различных списков литературы или рубрикацию в пределах одного ? 
+%
 
 \begin{thebibliography}{10}
 \def\selectlanguageifdefined#1{
@@ -46,6 +25,13 @@ russian]{babel}
 \selectlanguageifdefined{russian}
 Chlipala A. Certified programming with dependent types : a pragmatic introduction to the Coq proof assistant / A. Chlipala, 2013. 424 c.
 
+\bibitem{hott}
+\selectlanguageifdefined{russian}
+\BibEmph{{The Univalent Foundations Program}}. Homotopy Type Theory: Univalent
+  Foundations of Mathematics. \BibDash
+\newblock Institute for Advanced Study~:
+  \url{https://homotopytypetheory.org/book}, 2013.
+
 \bibitem{coq}
 \selectlanguageifdefined{russian}
 \BibEmph{{Coq Development Team}}. {The Coq Proof Assistant Reference Manual [Электронный ресурс]~: руководство пользователя}
@@ -62,6 +48,8 @@ Pierce B.C. [и др.]. Software Foundations // Version 4.0 (May, 2016) [Электронны
 Bertot Y., Cast?ran P. Interactive Theorem Proving and Program Development / Y. Bertot, P. Cast?ran, Berlin, Heidelberg: Springer Berlin Heidelberg, 2004.
  URL: http://www.cis.upenn.edu/~bcpierce/sf/current/index.html.
 
+%Mercurial Клипалы
+
 \bibitem{goldblatt}
 \selectlanguageifdefined{russian}
 Goldblatt R. Topoi : the categorial analysis of logic / R. Goldblatt, Dover Publications, 2006. 551 c.
@@ -70,7 +58,19 @@ Goldblatt R. Topoi : the categorial analysis of logic / R. Goldblatt, Dover Publ
 \selectlanguageifdefined{russian}
 Barr M., Wells C. TOPOSES, TRIPLES AND THEORIES 2005. URL: http://www.tac.mta.ca/tac/reprints/articles/12/tr12.pdf
 
+%Mercurial Клипалы
+
+\bibitem{tt_geuv}
+Geuvers, H. Introduction to Type Theory / Herman Geuvers // Technical
+University Eindhoven, The Netherlands \BibDash 2008. \BibDash http://www.cs.ru.nl/
+~herman/PUBS/IntroTT.pdf.
+
+\bibitem{harper}
+\selectlanguageifdefined{russian}
+\BibEmph{Harper,~R.} {Extensionality, intensionality, and Brouwer’s dictum [Электронный ресурс]~: электронная статья} \BibDash
+\newblock 2012. \BibDash
+\newblock Режим доступа:
+  \BibUrl{http://existentialtype.wordpress.com/2012/08/11/
+extensionality-intensionality-and-brouwers-dictum/}.
+
 \end{thebibliography}
-
-\end{document}
-
