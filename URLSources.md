@@ -7,6 +7,12 @@ http://www4.di.uminho.pt/~mjf/pub/SFV-CIC-2up.pdf
 
 Симплициальная модель ТТ элементарными конструкциями, Coquand: http://www.cse.chalmers.se/~coquand/decuniv.pdf
 
+## Pentagons
+https://en.m.wikipedia.org/wiki/Pentagonal_tiling
+
+Исходная ссылка на популярный портал: https://www.quantamagazine.org/pentagon-tiling-proof-solves-century-old-math-problem-20170711/
+Найденная мной статья Рао: https://perso.ens-lyon.fr/michael.rao/publi/penta.pdf
+
 # Coq
 
 Automatic and Transparent Transfer of Theorems along Isomorphisms in the Coq Proof Assistant
