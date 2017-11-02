@@ -35,6 +35,11 @@ http://incredible.pm — крайне занятный открытый визу
 Ещё одно введение в категории с немалым вниманием к нюансам: http://www.logicmatters.net/resources/pdfs/GentleIntro.pdf
 
 # Coq
+Формализация Deflate https://arxiv.org/abs/1609.01220v1  
+и сайт автора с подробной библиографией: http://www2.tcs.ifi.lmu.de/~senjak/
+
+Сам репозиторий: https://github.com/dasuxullebt/deflate
+
 Судя по всему, крупнейший сборник успешных Coq-формализаций на GitHub. https://github.com/coq-contribs  
 Среди прочего, сделаны:
 * алгоритм Бухбергера
